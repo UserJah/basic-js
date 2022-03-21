@@ -1,46 +1,42 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
- * Extract season from given dateTime and expose the enemy scout!
+ * Extract season from given date and expose the enemy scout!
  * 
- * @param {DateTime | FakeDateTime} dateTime real or fake dateTime
+ * @param {date | Fakedate} date real or fake date
  * @returns {String} time of the year
  * 
  * @example
  * 
- * getSeason(new DateTime(2020, 02, 31)) => 'spring'
+ * getSeason(new date(2020, 02, 31)) => 'spring'
  * 
  */
 function getSeason(date) {
-  if (date != this.date) {
-    return "Invalid date!";
-  } else {
+  if (arguments.length == 0) {
+    return 'Unable to determine the time of year!';
+  } else if (Object.getOwnPropertyNames(date).length == 0 && date instanceof Date) { 
     let seasons = {'winter': 0,
                   'spring': 0,
                   'summer': 0,
                   'autumn': 0,};
 
-    let dateTime = new Date(date);
-
-    if (dateTime.getMonth() == 0 || dateTime.getMonth() == 1 || dateTime.getMonth() == 11) {
+    if (date.getMonth() == 0 || date.getMonth() == 1 || date.getMonth() == 11) {
       seasons['winter'] += 1;
-    } else if (dateTime.getMonth() >= 2 && dateTime.getMonth() <= 4) {
+    } else if (date.getMonth() >= 2 && date.getMonth() <= 4) {
       seasons['spring'] += 1;
-    } else if (dateTime.getMonth() >= 5 && dateTime.getMonth() <= 7) {
+    } else if (date.getMonth() >= 5 && date.getMonth() <= 7) {
       seasons['summer'] += 1;
-    } else if (dateTime.getMonth() >= 8 && dateTime.getMonth() <= 10) {
+    } else if (date.getMonth() >= 8 && date.getMonth() <= 10) {
       seasons['autumn'] += 1;
-    } else {
-      return 'Unable to determine the time of year!'
     }
-
-    console.log(seasons);
 
     for (let season in seasons) {
       if (seasons[season] == 1) {
         return season;
       }
     }
+  }  else {
+      throw new Error('Invalid date!');
   }
 }
 

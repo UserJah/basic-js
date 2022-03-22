@@ -35,7 +35,6 @@ function transform(arr) {
         i++;
         transformArray.push(arr[i]);
         transformArray.push(arr[i]);
-        console.log('hello world');
       } else if (arr[i] == '--double-prev') {
         i--;
         transformArray.push(arr[i]);

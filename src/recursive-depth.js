@@ -20,8 +20,15 @@ class DepthCalculator {
       return 0;
     }
     let depth = 0;
+<<<<<<< HEAD
     for (let el of arr) {
       depth = Math.max(depth, this.calculateDepth(el));
+=======
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+        depth = Math.max(depth, this.calculateDepth(arr[i]));
+      }
+>>>>>>> b9ae6fc9986f999cee39333ccb516c52954b6e7b
     }
     return depth + 1;
   }
